@@ -1,0 +1,18 @@
+:root{
+    
+    --bs-blue: #7c0040 !important;
+    --bs-primary:  #7c0040 !important;
+}
+
+@media (max-width: 700px) {
+    #mainContainer {
+        margin: 0 !important;
+        margin-top: 10px !important;
+        flex-direction: column !important;
+        padding: 0 20px !important;    
+    }
+
+    #my-canvas{
+        height: 40vh !important;
+    }
+}
