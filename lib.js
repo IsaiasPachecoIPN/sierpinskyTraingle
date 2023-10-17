@@ -68,8 +68,9 @@ function generarPuntoAleatorioInicial(){
 }
 
 function tirarDado(){
+    //debugger
     const min = Math.ceil(MIN);
-    const max = Math.floor(CARAS_DE_DADO);
+    const max = Math.floor(NUM_LADOS);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -140,6 +141,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const sliderVelocidad = document.getElementById("slider");
     const lblSlider = document.getElementById("lblVelocidad");
     const txtDistanciaPuntos = document.getElementById("numD");
+    const botonAgregarLado = document.getElementById("agregarLados");
+    const botonReducirLado = document.getElementById("reducirLados");
 
     for (const button of botonesColores) {
         button.addEventListener("click", changeColor);
@@ -159,6 +162,23 @@ document.addEventListener("DOMContentLoaded", function() {
         simulatioDelay = sliderVelocidad.value;
     })
 
+    botonReducirLado.addEventListener("click", function(){
+        //debugger
+        points = [];
+        aux_num_lados = NUM_LADOS - 1;
+        if( aux_num_lados > 2)
+            NUM_LADOS = aux_num_lados;
+        stopDrawing = false;
+        loop();
+    })
+
+    botonAgregarLado.addEventListener("click", function(){
+        points = [];
+        NUM_LADOS = NUM_LADOS + 1;
+        stopDrawing = false;
+        loop();
+    })
+
     btnIniciar.addEventListener("click", function(){
 
         stopDrawing = false;
@@ -166,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //Reiniciar arreglo de puntos
         points = [];
-        addPoint(0,LADO_FIGURA/2);
+        addPoint((vertices[0][0]+vertices[1][0]/2),(vertices[1][1]+vertices[0][1])/2);
 
         console.log(points)
     
