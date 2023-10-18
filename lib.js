@@ -27,6 +27,9 @@ function changeColor(element) {
     let bgValues = backgroundColor.slice(4, -1).split(",");
 
     actualColor = {r: bgValues[0], g: bgValues[1], b: bgValues[2]};
+
+    stopDrawing = false;
+    loop();
 }
 
 

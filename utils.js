@@ -57,15 +57,15 @@ async function draw() {
   else
     LADO_FIGURA = (width - (width-height))/2;
   
-  background(220);
+  //background(220);
   
   translate(width/2, height/2); // Coloca el origen en el centro del lienzo
   scale(1, -1); // Invierte la dirección del eje Y para que sea coherente con el sistema cartesiano
 
   vertices = generarFigura(NUM_LADOS, LADO_FIGURA);
 
+  background(figureColor.r, figureColor.g, figureColor.b);
   dibujarFigura(vertices);
-  fill(figureColor.r, figureColor.g, figureColor.b);
   
   for (let point of points) {
     stroke(actualColor.r, actualColor.g, actualColor.b);
@@ -98,6 +98,7 @@ function generarFigura(n, tam_lado) {
 }
 
 function dibujarFigura(vertices) {
+  stroke(actualColor.r, actualColor.g, actualColor.b);
   // Itera sobre los n lados de la figura
   for (let i = 0; i < vertices.length - 1; i++) {
     // Dibuja una línea entre el vértice actual y el siguiente
