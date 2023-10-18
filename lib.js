@@ -1,79 +1,9 @@
-/**
- * Genera los puntos para crear una recta tomando dos vértices aleatorios
- * @returns 
- */
-function generarPuntosRectaRandom(){
-    let vertexA = vertices[tirarDado()-1];
-    let vertexB = vertices[tirarDado()-1];
-
-    while(vertexA === vertexB)
-        vertexB = vertices[tirarDado()-1];
-
-    return [vertexA, vertexB];
-}
-
-
-/**
- * Ecuacion que retorna los valores m y b de la ecuacion de la recta y = mx+b
- * @param {*} vertexA 
- * @param {*} vertexB 
- */
-function getEcuacionRecta(vertexA, vertexB){
-
-    let [x1,y1] = vertexA;
-    let [x2,y2] = vertexB;
-
-    let auxX = (y2-y1)/(x2-x1);
-    let auxC = -(((x1*y2+y1*x1)/(x2-x1)) + y1)
-
-    return {
-        m: auxX,
-        b: auxC,
-        vertices: [vertexA, vertexB]
-    }
-}
-
-/**
- * Genera un punto aleatorio en una recta tomando los valores de la recta
- * @param {*} vertexA 
- * @param {*} vertexB 
- * @returns 
- */
-function generarPuntoEnRecta( recta  ){
-    const {m,b,vertices} = recta;
-
-    let [x1,y1] = vertices[0];
-    let [x2,y2] = vertices[1];
-
-    let x = getRandomDecimal(x1, x2, 2);
-    let y = m*x+b;
-    return [x,y]
-}
-
-function puntoRectaPerpendicular( recta, puntoEnRecta , distancia){
-    let pendienteRectaP = -1/recta.m;
-    let [x1,y1] = puntoEnRecta;
-    let y = y1 + pendienteRectaP * ( x1 + distancia );
-
-    return[x1+distancia,y]
-}
-
-function generarPuntoAleatorioInicial(){
-    let vertices = generarPuntosRectaRandom();
-    let recta = getEcuacionRecta(vertices[0], vertices[1]);
-    let puntoEnRecta = generarPuntoEnRecta(recta);
-    let [x,y] = puntoRectaPerpendicular(recta, puntoEnRecta, 3)
-
-    return [x,y];
-}
-
 function tirarDado(){
     //debugger
-    const min = Math.ceil(MIN);
+    const min = Math.ceil(1);
     const max = Math.floor(NUM_LADOS);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 
 function calcularPuntoMedio(vertexA, vertexB){
     let [x1,y1] = vertexA;
@@ -89,11 +19,6 @@ function obtenerUltimoPunto(){
     let lastPoint = points[points.length-1]
     return [lastPoint.x, lastPoint.y];
 }
-
-var sleepES5 = function(ms){
-    var esperarHasta = new Date().getTime() + ms;
-    while(new Date().getTime() < esperarHasta) continue;
-};
 
 function changeColor(element) {
 
@@ -116,15 +41,10 @@ function changeColorFondo(element) {
 
 //Funcion que se ejecuta cada que cambia de tamaño la ventana
 function windowResized() {
-    // Get the current width and height of the window
-
-    // Calculate the scale factor
-    
     const divCanvasContainer = document.getElementById("my-canvas");
     const width = divCanvasContainer.clientWidth;
     const height = divCanvasContainer.clientHeight;
 
-    // Resize the canvas to the width and height of the window
     resizeCanvas(width, height);
 }
 
@@ -143,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const txtDistanciaPuntos = document.getElementById("numD");
     const botonAgregarLado = document.getElementById("agregarLados");
     const botonReducirLado = document.getElementById("reducirLados");
+    const sliderTamPunto = document.getElementById("tamPunto");
+    const lblSliderTamPunto = document.getElementById("lblTamPunto");
 
     for (const button of botonesColores) {
         button.addEventListener("click", changeColor);
@@ -157,9 +79,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     sliderVelocidad.addEventListener("change", function(){
-        console.log("evento");
         lblSlider.innerHTML = (sliderVelocidad.value / 1000) + 'segs';
         simulatioDelay = sliderVelocidad.value;
+    })
+
+    sliderTamPunto.addEventListener("change", function(){
+        lblSliderTamPunto.innerHTML = sliderTamPunto.value;
+        tamPunto = sliderTamPunto.value;
     })
 
     botonReducirLado.addEventListener("click", function(){
@@ -186,7 +112,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //Reiniciar arreglo de puntos
         points = [];
-        addPoint((vertices[0][0]+vertices[1][0]/2),(vertices[1][1]+vertices[0][1])/2);
+        //addPoint((vertices[0][0]+vertices[1][0]/2),(vertices[1][1]+vertices[0][1])/2);
+        let puntoMedio = calcularPuntoMedio(vertices[0], vertices[1]);
+        addPoint(puntoMedio[0], puntoMedio[1]);
 
         console.log(points)
     
