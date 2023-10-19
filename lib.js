@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const divBotones = document.getElementById("botonesColores");
     const divBotonesFondo = document.getElementById("fondoColores");
     const botonesColores = divBotones.querySelectorAll("button");
-    const botonesColoresFondo = divBotonesFondo.querySelectorAll("button");
+    //const botonesColoresFondo = divBotonesFondo.querySelectorAll("button");
     const sliderVelocidad = document.getElementById("slider");
     const lblSlider = document.getElementById("lblVelocidad");
     const txtDistanciaPuntos = document.getElementById("numD");
@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", changeColor);
     }
 
-    for (const button of botonesColoresFondo) {
-        button.addEventListener("click", changeColorFondo);
-    }
+    // for (const button of botonesColoresFondo) {
+    //     button.addEventListener("click", changeColorFondo);
+    // }
 
     txtDistanciaPuntos.addEventListener("change", function(){
         valorPuntoMedio = txtDistanciaPuntos.value;
