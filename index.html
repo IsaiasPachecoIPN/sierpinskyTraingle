@@ -27,15 +27,12 @@
               <div class="card-body">
                   <div style="display: flex; gap: 10px; flex-direction: column;">
                       <h4>Controles</h4>
-                    
-                      <h5>Simulación</h5>
                       <div>
                         <h6>Velocidad</h6>
-                        <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px;">
-                            <label for="slider">Delay de Simulación</label>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin: 10px;">
+                            <label for="slider" id="lblVelocidad">Delay simulación: 0 segs.</label>
                             <div>
-                                <input type="range" min="0" max="1000" value="0" step="10" id="slider"/>
-                                <label for="slider" id="lblVelocidad">0 seg.</label>
+                                <input type="range" class="form-range" type="range" min="0" max="1000" value="0" step="10" id="slider"/>
                             </div>
                         </div>
                       </div>
@@ -44,42 +41,42 @@
                       <div>
                           <h6>Color de lápiz</h6>
                           <div style="display: flex; flex-direction: row; gap: 2px;" id="botonesColores">
-                              <button id="c1" style="background-color: rgb(0, 0, 0); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="c2" style="background-color: rgb(17, 28, 153); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="c3" style="background-color: rgb(179, 168, 15); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="c4" style="background-color: rgb(186, 36, 173); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="c5" style="background-color: rgb(27, 167, 158); cursor: pointer; width: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="c1" style="background-color: rgb(0, 0, 0); cursor: pointer; width: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="c2" style="background-color: rgb(17, 28, 153); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="c3" style="background-color: rgb(179, 168, 15); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="c4" style="background-color: rgb(186, 36, 173); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="c5" style="background-color: rgb(27, 167, 158); cursor: pointer; width: 15px; height: 15px;"></button>
                           </div>
                       </div>
           
                       <div>
                           <h6>Color de fondo</h6>
                           <div style="display: flex; flex-direction: row; gap: 2px;" id="fondoColores">
-                              <button id="f1" style="background-color: rgb(255, 255, 255); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="f2" style="background-color: rgb(0, 0, 0); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="f3" style="background-color: rgb(107, 107, 107); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="f4" style="background-color: rgb(180, 180, 180); cursor: pointer; width: 15px; height: 15px;"></button>
-                              <button id="f5" style="background-color: rgb(47, 47, 47); cursor: pointer; width: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="f1" style="background-color: rgb(255, 255, 255); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="f2" style="background-color: rgb(0, 0, 0); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="f3" style="background-color: rgb(107, 107, 107); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="f4" style="background-color: rgb(180, 180, 180); cursor: pointer; wtype="button" class="btn btn-dark" idth: 15px; height: 15px;"></button>
+                              <button type="button" class="btn btn-dark" id="f5" style="background-color: rgb(47, 47, 47); cursor: pointer; width: 15px; height: 15px;"></button>
                           </div>
                       </div>
           
                       <div>
                           <label for="iter">Número de iteraciones</label>
-                          <input type="number" id="iter" name="iter" step="1000" value="1000"/>
+                          <input class="form-control" type="number" id="iter" name="iter" step="1000" value="1000"/>
                       </div>
                       <div>
                         <label for="numD">Distancia entre puntos</label>
-                        <input type="number" id="numD" name="numD" step="0.1" value="2" min="1"/>
+                        <input class="form-control" type="number" id="numD" name="numD" step="0.1" value="2" min="1"/>
                     </div>
-                        <div style="display: flex; gap: 10px; justify-content: center;">
-                            <input type="range" min="1" max="10" value="1" step="1" id="tamPunto"/>
-                            <label for="tamPunto" id="lblTamPunto">1</label>
+                        <div style="margin: 10px;" >
+                            <label for="tamPunto" id="lblTamPunto" class="form-label">Tamaño punto: 1</label>
+                            <input type="range" class="form-range" type="range" min="1" max="10" value="1" step="1" id="tamPunto"/>
                         </div>
                         <div style="display: flex; gap: 10px; justify-content: center;">
-                            <button id="agregarLados" style="flex-grow: 1;">Agregar Lado</button>
-                            <button id="reducirLados" style="flex-grow: 1;">Reducir Lado</button>
+                            <button type="button" class="btn btn-dark" id="agregarLados" style="flex-grow: 1;">Agregar Lado</button>
+                            <button type="button" class="btn btn-dark" id="reducirLados" style="flex-grow: 1;">Reducir Lado</button>
                         </div>
-                        <button id="iniciar">Iniciar</button>
+                        <button type="button" class="btn btn-dark" id="iniciar">Iniciar</button>
                   </div>
               </div>
           </div>

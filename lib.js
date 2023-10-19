@@ -82,13 +82,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     sliderVelocidad.addEventListener("change", function(){
-        lblSlider.innerHTML = (sliderVelocidad.value / 1000) + 'segs';
+        lblSlider.innerHTML = "Delay simulación: " + (sliderVelocidad.value / 1000) + 'segs';
         simulatioDelay = sliderVelocidad.value;
     })
 
     sliderTamPunto.addEventListener("change", function(){
-        lblSliderTamPunto.innerHTML = sliderTamPunto.value;
-        tamPunto = sliderTamPunto.value;
+        lblSliderTamPunto.innerHTML = "Tamaño punto: " + sliderTamPunto.value;
+        tamPunto =  sliderTamPunto.value;
     })
 
     botonReducirLado.addEventListener("click", function(){
