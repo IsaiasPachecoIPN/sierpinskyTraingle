@@ -9,6 +9,7 @@ var figureColor = {r: 255, g: 255, b: 255};
 var simulatioDelay = 0;
 var valorPuntoMedio = 2;
 var tamPunto = 1;
+var IS_LOADING = false;
 
 // Vértices del triángulo
 var vertices ;
@@ -39,10 +40,15 @@ const sleep = (millis) => {
     return new Promise(resolve => setTimeout(resolve, millis))
 }
 
+
+stopDrawing = true;
+
 async function draw() {
 
+  //debugger
   if (stopDrawing) {
     noLoop(); // Detiene la función draw
+    document.getElementById("spinner_loading").style.display = "none";
   }else{
     loop();
     stopDrawing = false;
@@ -67,11 +73,18 @@ async function draw() {
   background(figureColor.r, figureColor.g, figureColor.b);
   dibujarFigura(vertices);
   
+  if(points < 1)
+    document.getElementById("spinner_loading").style.display = "none";
+
   for (let point of points) {
     stroke(actualColor.r, actualColor.g, actualColor.b);
     ellipse(point.x, point.y, tamPunto, tamPunto); // Dibujar los puntos almacenados en el array
-    if(simulatioDelay > 0)
-        await sleep(simulatioDelay);
+    if(simulatioDelay > 0){
+      document.getElementById("spinner_loading").style.display = "inline-block";
+      await sleep(simulatioDelay);
+    }
+
+    document.getElementById("spinner_loading").style.display = "none";
   }
 
 }

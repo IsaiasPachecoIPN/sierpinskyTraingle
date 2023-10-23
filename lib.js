@@ -69,6 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const sliderTamPunto = document.getElementById("tamPunto");
     const lblSliderTamPunto = document.getElementById("lblTamPunto");
 
+    const btnDetener = document.getElementById("detener");
+
+    const spinnerLoading = document.getElementById("spinner_loading");
+
     for (const button of botonesColores) {
         button.addEventListener("click", changeColor);
     }
@@ -110,8 +114,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     btnIniciar.addEventListener("click", function(){
 
+        //debugger
+
+        if(IS_LOADING){
+            return;
+        }
+
         stopDrawing = false;
         loop();
+
+        //Cambiar display:none de spinnerLoading
+        IS_LOADING = true;
 
         //Reiniciar arreglo de puntos
         points = [];
@@ -119,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let puntoMedio = calcularPuntoMedio(vertices[0], vertices[1]);
         addPoint(puntoMedio[0], puntoMedio[1]);
 
-        console.log(points)
+        //console.log(points)
     
         let iters = inputIter.value > 0 ? inputIter.value : 1000;
     
@@ -132,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     
         stopDrawing = true;
-
+        IS_LOADING = false;
     
     });
 });
